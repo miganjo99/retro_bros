@@ -19,6 +19,9 @@ function App() {
        <div className="p-10 text-3xl text-red-500">
       Hola Tailwind ✨
       </div>
+       <div className="p-10 text-3xl text-red-500">
+      Hola Tailwwwwwwwwwwwwwwwwwwwind ✨
+      </div>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
