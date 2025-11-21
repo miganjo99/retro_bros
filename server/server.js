@@ -17,7 +17,7 @@ app.use(express.json());
 
 
 app.get("/", (req, res) => {
-  res.send("Backend funcionando 🚀");
+  res.send("Backend funcionando sisissi 🚀");
 });
 
 // Conexión a MongoDB
