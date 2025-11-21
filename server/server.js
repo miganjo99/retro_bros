@@ -9,6 +9,11 @@ import itemsRoutes from "./routes/items.js";
 dotenv.config();
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Backend funcionando 🚀");
+});
+
+
 // Middleware
 app.use(cors());
 app.use(express.json());
