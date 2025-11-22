@@ -1,39 +1,40 @@
 import express from "express";
 import Item from "../models/Item.js";
-import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-// Middleware auth
-const auth = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).json({ error: "No autorizado" });
+// Obtener TODOS los items
+router.get("/", async (req, res) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = decoded.id;
-    next();
-  } catch {
-    res.status(401).json({ error: "Token inválido" });
+    const items = await Item.find(); // obtiene todos los items
+    res.json(items);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener los items" });
   }
-};
-
-// Obtener items del usuario
-router.get("/", auth, async (req, res) => {
-  const items = await Item.find({ user: req.userId });
-  res.json(items);
 });
 
 // Crear item
-router.post("/", auth, async (req, res) => {
-  const { name } = req.body;
-  const item = await Item.create({ name, user: req.userId });
-  res.status(201).json(item);
+router.post("/", async (req, res) => {
+  try {
+    const { name } = req.body;
+    const item = await Item.create({ name });
+    res.status(201).json(item);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al crear el item" });
+  }
 });
 
 // Eliminar item
-router.delete("/:id", auth, async (req, res) => {
-  await Item.findOneAndDelete({ _id: req.params.id, user: req.userId });
-  res.json({ ok: true });
+router.delete("/:id", async (req, res) => {
+  try {
+    await Item.findByIdAndDelete(req.params.id);
+    res.json({ ok: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al eliminar el item" });
+  }
 });
 
 export default router;
