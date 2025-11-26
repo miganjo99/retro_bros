@@ -1,4 +1,3 @@
-// client/src/api/items.js
 const BASE = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/items";
 
 export async function fetchItems() {
@@ -23,6 +22,7 @@ export async function updateItem(id, data) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
+  if (!res.ok) throw new Error("Error updating item: " + res.status);
   return res.json();
 }
 

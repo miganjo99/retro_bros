@@ -27,6 +27,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Rutas
 app.use("/api/items", itemsRoutes);
 
+
 // Puerto
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
