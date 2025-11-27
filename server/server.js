@@ -2,12 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-
 import itemsRoutes from "./routes/items.js";
+
 
 dotenv.config();
 const app = express();
-
 
 
 // Middleware
@@ -15,9 +14,13 @@ app.use(cors());
 app.use(express.json());
 
 
+
+
 app.get("/", (req, res) => {
   res.send("Backend funcionando sisisisi 🚀");
 });
+
+
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI)
