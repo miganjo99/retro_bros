@@ -40,3 +40,29 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Estilo scrollbar para ConsoleCarousel */
+.console-carousel-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.console-carousel-scrollbar::-webkit-scrollbar-track {
+  background: #2d2d40;
+  border-radius: 4px;
+}
+
+.console-carousel-scrollbar::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.console-carousel-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9f7aea;
+}
+
+/* Firefox */
+.console-carousel-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed #2d2d40;
+}
